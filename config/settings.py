@@ -36,9 +36,11 @@ LOCAL_APPS = [
 
 THIRD_PARTY_APPS = [
     'rest_framework',
+    'drf_spectacular',
 ]
 
 INSTALLED_APPS = LOCAL_APPS + THIRD_PARTY_APPS
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -136,6 +138,12 @@ else:
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.User'
 
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+
+# model translation
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'uz'
 LANGUAGES = (
     ('en', _('English')),
@@ -145,3 +153,12 @@ LANGUAGES = (
 LOCALE_PATHS = [
     BASE_DIR / 'locale',
 ]
+
+# DRF Spectacular
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'EBook Library API',
+    'DESCRIPTION': 'API for managing electronic books in the library',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    'COMPONENT_SPLIT_REQUEST': True,
+}

@@ -49,7 +49,7 @@ class EBook(BaseModel):
 
     name = models.CharField(max_length=80, verbose_name=_("name"))
     slug = models.SlugField(max_length=80, unique=True, verbose_name=_("slug"))
-    views = models.PositiveBigIntegerField(default=0, verbose_name=_("views"))
+    views = models.PositiveBigIntegerField(default=0, verbose_name=_("views"), help_text="views for book")
     downloads = models.PositiveBigIntegerField(default=0, verbose_name=_("downloads"))
     writing = models.CharField(
         max_length=2,
