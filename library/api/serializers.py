@@ -6,7 +6,7 @@ from library.models import BookCategory, BookLang, Publication, EBook
 class BookCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = BookCategory
-        fields = ('id', 'name', 'created', 'updated')
+        fields = ('id', 'name', 'slug', 'created', 'updated')
 
 class BookLangSerializer(serializers.ModelSerializer):
     class Meta:

@@ -9,6 +9,7 @@ class BookCategoryAdmin(admin.ModelAdmin):
     search_fields = ('name',)
     ordering = ('name',)
     list_per_page = 20
+    prepopulated_fields = {"slug":('name', )}
 
 @admin.register(BookLang)
 class BookLangAdmin(admin.ModelAdmin):
@@ -39,7 +40,7 @@ class EBookAdmin(admin.ModelAdmin):
     )
     ordering = ('name',)
     list_per_page = 20
-    readonly_fields = ('views', 'downloads')  # Prevent editing of views and downloads
+    readonly_fields = ('views', 'downloads')
     prepopulated_fields = {'slug':('name', )}
 
     fieldsets = (

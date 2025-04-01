@@ -57,24 +57,13 @@ class EBookListView(APIView):
                 location=OpenApiParameter.QUERY
             ),
         ],
-        examples=[
-            OpenApiExample(
-                'success response',
-                value={
-                    "success":True,
-                    "data":[
-                        {
-                            "id":"uuid",
-                            "name":"String",
-                            "slug":"String"
-                        }
-                    ]
-                }
-            )
-        ]
     )
     
     def get(self, request):
+        category_slug = request.GET.get('category')
         books = EBook.objects.all()
+        if category_slug:
+            books = books.filter(category__slug = category_slug)
+            
         serializer = EBookSerializer(books, many = True, context = {'request':request})
         return api_response(data=serializer.data)
